@@ -1,0 +1,70 @@
+#-*- coding: utf-8 -*-
+#:import C kivy.utils.get_color_from_hex
+
+BoxLayout:
+    orientation: 'vertical'
+    padding: [50,50, 50, 50]
+    BoxLayout:
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text:'Gerenciamento de usuario WIFI-CAMPO / Mikrotik'
+            Spinner:
+                id: address_server
+                text: 'Escolha a RouterBoard'
+                values: ('TODOS', 'Frente 1A', 'Frente 1B', 'Frente 3', 'Frente 6')
+                background_normal: ''
+                background_color: C('#1766B5')
+
+            BoxLayout:
+                orientation: 'horizontal'
+                Label:
+                    text:'Descricao / Ex: Celular do Joao: '
+                TextInput:
+                    id: desc_address
+                    text: ''
+                    color:  C('#1766B5')
+                    multiline: False
+                    padding_y: ( self.height - self.line_height ) / 2
+
+            BoxLayout:
+                orientation: 'horizontal'
+                Label:
+                    text:'MAC Adress / Ex: 00:00:00:00:00 : '
+                TextInput:
+                    id: mac_address
+                    text: ''
+                    color:  C('#1766B5')
+                    multiline: False
+                    padding_y: ( self.height - self.line_height ) / 2
+            Label:
+                id: status_send
+                text: ''
+                color: C('#2fcc66')
+    BoxLayout:
+        padding: [100,100, 100, 100]
+        Button:
+            id: find_list_address
+            on_release: app.addALL()
+            text: 'Enviar'
+            background_normal: ''
+            background_color: C('#1766B5')
+
+        Button:
+            id: cancel_list_address
+            text: 'Cancelar'
+            background_normal: ''
+            background_color: C('#C80800')
+
+
+<PopupBox>:
+    pop_up_text: _pop_up_text
+    size_hint: .5, .5
+    auto_dismiss: True
+    title: 'Enviando...'
+
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            id: _pop_up_text
+            text: ''
